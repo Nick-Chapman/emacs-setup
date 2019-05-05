@@ -23,13 +23,14 @@
 (menu-bar-mode 0)
 (setq-default tab-width 4)
 (column-number-mode)
+(setq-default indent-tabs-mode nil)
 
-;(setq frame-title-format "%b")
-;(global-unset-key [insert]) ; stop stupid overwrite mode
-;(setq default-major-mode 'text-mode)
+(setq frame-title-format "%b")
+(global-unset-key [insert]) ; stop stupid overwrite mode
+(setq default-major-mode 'text-mode)
 ;(setq-default whitespace-line-column 90)
-;(setq whitespace-style '(tabs))
-;(global-whitespace-mode)
+(setq whitespace-style '(face tabs trailing))
+(global-whitespace-mode)
 
 (defun shuffle-up () (interactive) (scroll-down 1) (previous-line 1))
 (defun shuffle-down () (interactive) (scroll-up 1) (next-line 1))
@@ -44,9 +45,9 @@
   (interactive)
   (let ((buffer (get-buffer "*shell*")))
     (if buffer
-	(save-excursion
-	  (set-buffer buffer)
-	  (rename-uniquely)))
+    (save-excursion
+      (set-buffer buffer)
+      (rename-uniquely)))
     (shell)))
 
 (global-set-key [M-down] 'down6)
@@ -68,10 +69,10 @@
 (global-set-key [home] 'beginning-of-buffer)
 (global-set-key [end] 'end-of-buffer)
 (global-set-key "\C-x\C-g" 'goto-line) ; standard is: M-g M-g OR M-g g
-;(global-set-key "\C-xp" 'other-frame)
+(global-set-key "\C-xp" 'other-frame)
 (global-set-key [C-tab] 'comint-dynamic-complete-filename)
 ;(global-set-key "\M-`" 'line-up-on)
-;(global-set-key [?\C-%] 'query-replace-regexp)
+(global-set-key [C-%] 'query-replace-regexp)
 
 (setq meta-n-map (make-sparse-keymap))
 (global-set-key [?\M-n] meta-n-map)
@@ -85,11 +86,6 @@
 (add-to-list 'package-archives
   '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 (package-initialize)
-
-(add-hook 'haskell-mode-hook #'hindent-mode)
-
-(eval-after-load 'haskell-mode
-  '(define-key haskell-mode-map [f6] 'haskell-navigate-imports))
 
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f7] 'haskell-mode-stylish-buffer))
@@ -124,5 +120,3 @@
 (add-to-list 'auto-mode-alist '("\\.daml\\'" . haskell-mode))
 
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-
-(global-unset-key [insert]) ; stop stupid overwrite mode
