@@ -9,6 +9,13 @@
  '(haskell-process-suggest-remove-import-lines t)
  '(haskell-process-type (quote ghci))
  '(haskell-tags-on-save t)
+
+ '(haskell-indentation-layout-offset 4)
+ '(haskell-indentation-left-offset 4)
+ '(haskell-indentation-starter-offset 4)
+ '(haskell-indentation-where-post-offset 4)
+ '(haskell-indentation-where-pre-offset 4)
+
  '(line-number-display-limit-width 10000)
  '(package-selected-packages (quote (markdown-preview-mode haskell-mode))))
 
