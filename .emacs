@@ -4,11 +4,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote ghci))
- '(haskell-tags-on-save t)
+
+ ;;'(haskell-process-auto-import-loaded-modules t)
+ ;;'(haskell-process-log t)
+ ;;'(haskell-process-suggest-remove-import-lines t)
+ ;;'(haskell-process-type (quote ghci))
+ ;;'(haskell-tags-on-save t)
 
  '(haskell-indentation-layout-offset 4)
  '(haskell-indentation-left-offset 4)
@@ -60,7 +61,7 @@
 (global-set-key [M-down] 'down6)
 (global-set-key [M-up] 'up6)
 ;(global-set-key [f1] 'delete-other-windows) ; C-x 1
-;(global-set-key [f2] 'split-window-vertically) ; C-x 2
+(global-set-key [f2] 'split-window-vertically) ; C-x 2
 (global-set-key [f3] 'shuffle-up)
 (global-set-key [f4] 'shuffle-down)
 (global-set-key [f5] 'shell)
@@ -101,5 +102,5 @@
   '(define-key haskell-mode-map [f7] 'haskell-mode-stylish-buffer))
 
 (load-file "~/github/ghcid/plugins/emacs/ghcid.el")
-(global-set-key [f10] 'ghcid)
+;(global-set-key [f10] 'ghcid)
 (global-set-key [insert] 'next-error)
