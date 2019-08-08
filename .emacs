@@ -5,6 +5,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 
+
  ;;'(haskell-process-auto-import-loaded-modules t)
  ;;'(haskell-process-log t)
  ;;'(haskell-process-suggest-remove-import-lines t)
@@ -16,9 +17,15 @@
  '(haskell-indentation-starter-offset 4)
  '(haskell-indentation-where-post-offset 4)
  '(haskell-indentation-where-pre-offset 4)
-
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote ghci))
+ '(haskell-tags-on-save nil)
+ '(hindent-extra-args (quote ("--indent-size" "4")))
+ '(hindent-style "")
  '(line-number-display-limit-width 10000)
- '(package-selected-packages (quote (markdown-preview-mode haskell-mode))))
+ '(package-selected-packages (quote (hindent markdown-preview-mode haskell-mode))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -105,5 +112,7 @@
 ;(global-set-key [f10] 'ghcid)
 (global-set-key [insert] 'next-error)
 
+
 (setq ghc-report-errors nil)
 
+(global-unset-key [f10])
