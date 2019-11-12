@@ -1,19 +1,9 @@
 
-;; I want to push -- Wed Aug 28 10:53:11 2019
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
-
- ;;'(haskell-process-auto-import-loaded-modules t)
- ;;'(haskell-process-log t)
- ;;'(haskell-process-suggest-remove-import-lines t)
- ;;'(haskell-process-type (quote ghci))
- ;;'(haskell-tags-on-save t)
-
  '(haskell-indentation-layout-offset 4)
  '(haskell-indentation-left-offset 4)
  '(haskell-indentation-starter-offset 4)
@@ -27,14 +17,7 @@
  '(hindent-extra-args (quote ("--indent-size" "4")))
  '(hindent-style "")
  '(line-number-display-limit-width 10000)
- '(package-selected-packages (quote (hindent markdown-preview-mode haskell-mode))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages (quote (eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -118,3 +101,14 @@
 (setq ghc-report-errors nil)
 
 (global-unset-key [f10])
+
+
+;; Tue Nov 12 21:24:52 2019
+(require 'eglot)
+(add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))
+; NOT TRIED YET....
+;(add-hook 'foo-mode-hook 'eglot-ensure)
+
+(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+;;(define-key eglot-mode-map (kbd "<f6>") 'xref-find-definitions) ;; list is on M-.
+
