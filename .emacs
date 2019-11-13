@@ -1,16 +1,21 @@
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
-
  '(haskell-indentation-layout-offset 2)
  '(haskell-indentation-left-offset 2)
  '(haskell-indentation-starter-offset 2)
  '(haskell-indentation-where-post-offset 2)
  '(haskell-indentation-where-pre-offset 2)
-
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
@@ -107,12 +112,10 @@
 (global-set-key [f6] 'markdown-preview-mode)
 
 
-;; Tue Nov 12 21:24:52 2019
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))
-; NOT TRIED YET....
-;(add-hook 'foo-mode-hook 'eglot-ensure)
+(add-hook 'haskell-mode-hook 'eglot-ensure)
+(add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
 
 (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
-;;(define-key eglot-mode-map (kbd "<f6>") 'xref-find-definitions) ;; list is on M-.
-
+(define-key eglot-mode-map (kbd "<M-return>") 'xref-find-definitions) ;; also on M-.
