@@ -4,11 +4,13 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(haskell-indentation-layout-offset 4)
- '(haskell-indentation-left-offset 4)
- '(haskell-indentation-starter-offset 4)
- '(haskell-indentation-where-post-offset 4)
- '(haskell-indentation-where-pre-offset 4)
+
+ '(haskell-indentation-layout-offset 2)
+ '(haskell-indentation-left-offset 2)
+ '(haskell-indentation-starter-offset 2)
+ '(haskell-indentation-where-post-offset 2)
+ '(haskell-indentation-where-pre-offset 2)
+
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
@@ -101,6 +103,8 @@
 (setq ghc-report-errors nil)
 
 (global-unset-key [f10])
+
+(global-set-key [f6] 'markdown-preview-mode)
 
 
 ;; Tue Nov 12 21:24:52 2019
