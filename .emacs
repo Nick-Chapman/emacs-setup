@@ -101,9 +101,9 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f7] 'haskell-mode-stylish-buffer))
 
-(load-file "~/github/ghcid/plugins/emacs/ghcid.el")
+;(load-file "~/code/ghcid/plugins/emacs/ghcid.el")
 ;(global-set-key [f10] 'ghcid)
-(global-set-key [insert] 'next-error)
+;(global-set-key [insert] 'next-error)
 
 
 (setq ghc-report-errors nil)
