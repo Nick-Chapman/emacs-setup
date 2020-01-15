@@ -115,7 +115,7 @@
 
 (require 'eglot)
 (add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))
-(add-hook 'haskell-mode-hook 'eglot-ensure)
+;(add-hook 'haskell-mode-hook 'eglot-ensure)
 (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
 
 (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
