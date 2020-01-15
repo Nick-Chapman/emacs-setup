@@ -25,7 +25,9 @@
  '(hindent-style "")
  '(line-number-display-limit-width 10000)
  '(max-mini-window-height 1)
- '(package-selected-packages (quote (eglot hindent markdown-preview-mode haskell-mode))))
+ '(package-selected-packages
+   (quote
+    (scala-mode eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
