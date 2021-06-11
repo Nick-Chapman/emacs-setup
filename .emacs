@@ -24,10 +24,10 @@
  '(hindent-extra-args (quote ("--indent-size" "4")))
  '(hindent-style "")
  '(line-number-display-limit-width 10000)
- '(max-mini-window-height 1)
+ '(max-mini-window-height 2)
  '(package-selected-packages
    (quote
-    (scala-mode eglot hindent markdown-preview-mode haskell-mode))))
+    (rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -112,7 +112,7 @@
 
 (global-unset-key [f10])
 
-(global-set-key [f6] 'markdown-preview-mode)
+;(global-set-key [f6] 'markdown-preview-mode)
 
 
 (require 'eglot)
@@ -122,3 +122,8 @@
 
 (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
 (define-key eglot-mode-map (kbd "<M-return>") 'xref-find-definitions) ;; also on M-.
+
+(fset 'fix-imports
+   [?\M-h ?\M-x ?s ?o ?r ?t tab ?l ?i tab return])
+
+(global-set-key [f6] 'fix-imports)
