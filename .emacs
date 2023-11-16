@@ -36,7 +36,10 @@
 (setq-default indent-tabs-mode nil)
 
 (setq frame-title-format "%b")
-(global-unset-key [insert]) ; stop stupid overwrite mode
+
+;(global-unset-key [insert]) ; stop stupid overwrite mode
+(global-set-key [insert] 'overwrite-mode)
+
 (setq default-major-mode 'text-mode)
 ;(setq-default whitespace-line-column 90)
 (setq whitespace-style '(face tabs trailing))
