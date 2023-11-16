@@ -152,3 +152,144 @@
    [?\M-h ?\M-x ?s ?o ?r ?t tab ?l ?i tab return])
 
 (global-set-key [f6] 'fix-imports)
+
+;;----------------------------------------------------------------------
+;; Tue Aug 29 19:43:28 2023
+
+
+;;;;;;
+; $Id: line-up.el,v 1.2 1994/08/25 16:23:56 james Exp $
+;
+; $Log: line-up.el,v $
+; Revision 1.2  1994/08/25  16:23:56  james
+; fixed looping when hit end of file.
+;
+; Revision 1.1  1994/08/23  11:05:14  nic
+; Initial revision
+;;;;;;
+
+
+;; Originally from James.
+
+;; The definition of line-up-on has changed to take the character at the
+;; current point, instead of requesting one from the user
+
+;;------------------------------------------------------------
+;; line-up-on char pos
+;; if line doesnt contain char then STOP else
+;;   consider first occurence on line,
+;;     min = furthest back it can go over white space
+;;     moveTo = max (min,pos)
+;;     shuffle char to moveTo (deleting or inserting spaces)
+;;   proceed to next line.
+
+
+(defun end-line-point ()
+  (save-excursion
+    (end-of-line)
+    (point)))
+
+(defun beginning-line-point ()
+  (save-excursion
+    (beginning-of-line)
+    (point)))
+
+(defun position-in-line (str occ)
+  (save-excursion
+    (untabify (beginning-line-point) (end-line-point))
+    (beginning-of-line)
+    (let ((pos (search-forward str (end-line-point) t occ)))
+      (if pos
+      (1+ (- pos (length str)))
+    nil))))
+
+(defun line-up-str-pos (str occ col)
+  (let ((cpos (position-in-line str occ))
+    (rpos (+ (beginning-line-point) col)))
+    (if (eq cpos nil)
+    nil
+      (if (< cpos rpos)
+      (progn
+        (goto-char (- cpos 1))
+        (while (< (point) (- rpos 1))
+          (insert " "))
+        t)
+    (progn
+      (goto-char (- cpos 2))
+      (while (and (> (point) (- rpos 2))
+              (looking-at " "))
+        (forward-char 1)
+        (backward-delete-char-untabify 1)
+        (backward-char 1))
+      t)))))
+
+
+
+(defun num-searches-until-reach (str orig-point)
+  (let ((this-occ-point (search-forward str orig-point t)))
+    (if (>= this-occ-point orig-point)
+    1
+      (progn
+    (goto-char this-occ-point)
+    (+ 1 (num-searches-until-reach str orig-point))))))
+
+
+(defun occurrence-in-line (char pos)
+  (save-excursion
+    (beginning-of-line)
+    (num-searches-until-reach char pos)))
+
+
+
+(defun string-after (n)
+  (buffer-substring (point) (+ n (point))))
+
+(defun empty-line ()
+  (equal 0 (- (end-line-point) (beginning-line-point))))
+
+(defun line-up-on (n)
+  "Line up further lines on length-n string found at point."
+  (interactive "p")
+  (save-excursion
+    (let* ((str (string-after n))
+       (occ (occurrence-in-line str (+ n (point))))
+       (pos (position-in-line str occ)))
+      (let ((mes (format "Lining up on occurence %d of `%s' ..." occ str)))
+    (message "%s" mes)
+    (let ((col (- pos (beginning-line-point))))
+      (while (and (or (empty-line)
+              (line-up-str-pos str occ col))
+              (equal 0 (progn (end-of-line)
+                      (forward-line 1))))))
+    (message "%s done" mes)))))
+
+(global-set-key "\M-'" 'line-up-on)
+
+
+;; Fri Oct 20 13:02:34 2023
+(add-hook 'go-mode-hook (lambda () (local-set-var whitespace-style '(face trailing))))
+
+
+(defvar incrementing-number 0)
+
+(defun insert-incrementing-number ()
+  (interactive)
+  (insert (number-to-string incrementing-number))
+  (setq incrementing-number (+ incrementing-number 1)))
+
+(defun reset-incrementing-number ()
+  (interactive)
+  (setq incrementing-number 0))
+
+(defun increment-number-at-point ()
+  (interactive)
+  (let ((pos (point)))
+    (forward-word 1)
+    (forward-word -1)
+    (if (looking-at "[0-9]+")
+	(let* ((from (match-beginning 0))
+	       (to (match-end 0))
+	       (n (string-to-number (buffer-substring from to))))
+	  (kill-region from to)
+	  (insert (number-to-string (+ 1 n)))
+	  (goto-char pos)))))
