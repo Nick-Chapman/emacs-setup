@@ -103,6 +103,26 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f7] 'haskell-mode-stylish-buffer))
 
+
+; Mon Nov 15 18:49:12 2021 -- cant get this as I like
+;(add-hook 'asm-mode-hook (lambda () (define-key asm-mode-map (kbd ";") 'self-insert-comand)))
+
+;; (add-hook 'asm-mode-hook (lambda ()
+;;                            (modify-syntax-entry ?. "w")
+;;                            (set-variable 'comment-column 0)
+;;                            (set-variable 'tab-always-indent t nil)))
+
+; Wed Feb  8 19:32:48 2023 -- another attempt at making asm mode nicer
+(add-hook 'asm-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?. "w") ; treat the dot (of labels) as a word char
+            (set-variable 'tab-always-indent t)
+            (local-unset-key ";")))
+(fset 'unindent
+   [?\C-a ?\C-  ?\M-x ?i ?s ?e tab ?- ?f ?o tab ?- ?r ?e tab return ?\[ ?^ ?  tab ?\] return escape left ?\C-w ?\C-w])
+(global-set-key [M-tab] 'unindent)
+
+
 ;(load-file "~/code/ghcid/plugins/emacs/ghcid.el")
 ;(global-set-key [f10] 'ghcid)
 ;(global-set-key [insert] 'next-error)
