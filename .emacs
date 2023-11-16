@@ -93,6 +93,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.daml\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
 
 (require 'package)
 (add-to-list 'package-archives
