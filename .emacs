@@ -27,7 +27,7 @@
  '(max-mini-window-height 2)
  '(package-selected-packages
    (quote
-    (rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
+    (go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -42,7 +42,8 @@
 
 (setq default-major-mode 'text-mode)
 ;(setq-default whitespace-line-column 90)
-(setq whitespace-style '(face tabs trailing))
+;(setq whitespace-style '(face tabs trailing))
+(setq whitespace-style '(face trailing)) ; golang uses tabs!
 (global-whitespace-mode)
 
 (defun shuffle-up () (interactive) (scroll-down 1) (previous-line 1))
