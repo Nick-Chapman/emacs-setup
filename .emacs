@@ -27,7 +27,7 @@
  '(max-mini-window-height 2)
  '(package-selected-packages
    (quote
-    (go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
+    (zig-mode go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -42,8 +42,10 @@
 
 (setq default-major-mode 'text-mode)
 ;(setq-default whitespace-line-column 90)
-(setq whitespace-style '(face tabs trailing))
-;(setq whitespace-style '(face trailing)) ; golang uses tabs!
+(setq whitespace-style '(face trailing)) ; golang uses tabs!
+(setq whitespace-style '(face tabs)) ; dont care about trailing WH
+(setq whitespace-style '(face)) ; dont care about tabs or trailing
+(setq whitespace-style '(face tabs trailing)) ; Care!
 (global-whitespace-mode)
 
 (defun shuffle-up () (interactive) (scroll-down 1) (previous-line 1))
@@ -97,8 +99,8 @@
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
 
 (require 'package)
-(add-to-list 'package-archives
-  '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
 (let ((my-stack-path (expand-file-name "~/.local/bin")))
@@ -150,6 +152,10 @@
 
 (fset 'fix-imports
    [?\M-h ?\M-x ?s ?o ?r ?t tab ?l ?i tab return])
+
+
+;(global-set-key [f6] 'comment-paragraph)
+(global-set-key [f6] 'comment-or-uncomment-region)
 
 (global-set-key [f6] 'fix-imports)
 
