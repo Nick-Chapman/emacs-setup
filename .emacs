@@ -27,7 +27,7 @@
  '(max-mini-window-height 2)
  '(package-selected-packages
    (quote
-    (tuareg zig-mode go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
+    (tuareg zig-mode go-mode rust-mode scala-mode hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
@@ -142,13 +142,13 @@
 ;(global-set-key [f6] 'markdown-preview-mode)
 
 
-(require 'eglot)
-(add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))
+;(require 'eglot)
+;(add-to-list 'eglot-server-programs '(haskell-mode . ("ghcide" "--lsp")))
 ;(add-hook 'haskell-mode-hook 'eglot-ensure)
-(add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
+;(add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1)))
 
-(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
-(define-key eglot-mode-map (kbd "<M-return>") 'xref-find-definitions) ;; also on M-.
+;(define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+;(define-key eglot-mode-map (kbd "<M-return>") 'xref-find-definitions) ;; also on M-.
 
 (fset 'fix-imports
    [?\M-h ?\M-x ?s ?o ?r ?t tab ?l ?i tab return])
