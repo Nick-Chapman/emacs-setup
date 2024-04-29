@@ -27,7 +27,7 @@
  '(max-mini-window-height 2)
  '(package-selected-packages
    (quote
-    (zig-mode go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
+    (tuareg zig-mode go-mode rust-mode scala-mode eglot hindent markdown-preview-mode haskell-mode))))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
