@@ -19,15 +19,14 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote ghci))
+ '(haskell-process-type 'ghci)
  '(haskell-tags-on-save nil)
- '(hindent-extra-args (quote ("--indent-size" "4")))
+ '(hindent-extra-args '("--indent-size" "4"))
  '(hindent-style "")
  '(line-number-display-limit-width 10000)
  '(max-mini-window-height 2)
  '(package-selected-packages
-   (quote
-    (tuareg zig-mode go-mode rust-mode scala-mode hindent markdown-preview-mode haskell-mode))))
+   '(tuareg zig-mode go-mode rust-mode scala-mode hindent markdown-preview-mode haskell-mode)))
 
 (tool-bar-mode 0)
 (menu-bar-mode 0)
