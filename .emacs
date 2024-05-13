@@ -85,6 +85,7 @@
 (global-set-key [end] 'end-of-buffer)
 (global-set-key "\C-x\C-g" 'goto-line) ; standard is: M-g M-g OR M-g g
 (global-set-key "\C-xp" 'other-frame)
+(require 'comint)
 (global-set-key [C-tab] 'comint-dynamic-complete-filename)
 ;(global-set-key "\M-`" 'line-up-on)
 (global-set-key [?\C-%] 'query-replace-regexp)
