@@ -74,7 +74,19 @@
 (global-set-key [f5] 'shell)
 (global-set-key [C-f5] 'fresh-shell)
 ;(global-set-key [f6] 'comment-paragraph)
-;(global-set-key [f7] 'switch-between-ml-mli)
+
+(defun switch-between-ml-mli ()
+  (interactive)
+  (let* ((name (buffer-file-name))
+         (other
+          (if (string-match "\\(.*\\.ml\\)i$" name)
+              (match-string 1 name)
+            (concat name "i"))))
+    (if (file-exists-p other)
+        (find-file other))))
+
+(global-set-key [f7] 'switch-between-ml-mli)
+
 (global-set-key [f8] 'revert-buffer-no-question)
 (global-set-key [f9] 'make-frame)
 ;(global-set-key [f10] 'delete-frame)
