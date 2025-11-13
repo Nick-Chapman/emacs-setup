@@ -109,6 +109,10 @@
 (add-to-list 'auto-mode-alist '("\\.daml\\'" . haskell-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.f\\'" . text-mode))
+(add-to-list 'auto-mode-alist '("\\.fun\\'" . tuareg-mode))
+(add-to-list 'auto-mode-alist '("\\.bob\\'" . tuareg-mode))
+(add-to-list 'auto-mode-alist '("\\.ml6\\'" . tuareg-mode))
+(add-to-list 'auto-mode-alist '("\\.pl\\'" . prolog-mode))
 
 (require 'package)
 ;(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
@@ -151,7 +155,7 @@
 
 (global-unset-key [f10])
 
-;(global-set-key [f6] 'markdown-preview-mode)
+(global-set-key [f6] 'markdown-preview-mode)
 
 
 ;(require 'eglot)
