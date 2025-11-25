@@ -289,7 +289,8 @@
 
 
 ;; Fri Oct 20 13:02:34 2023
-(add-hook 'go-mode-hook (lambda () (local-set-var whitespace-style '(face trailing))))
+;; Tue Nov 25 08:59:01 2025
+(add-hook 'go-mode-hook (lambda () (make-local-variable 'whitespace-style) (setq whitespace-style '(face trailing))))
 
 
 (defvar incrementing-number 0)
